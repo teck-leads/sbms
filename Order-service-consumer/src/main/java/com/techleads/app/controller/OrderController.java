@@ -8,7 +8,7 @@ public class OrderController {
 	
 	@GetMapping("/order")
 	public String paymentDetails() {
-		return "From Order-consumer-service";
+		return "From Order-consumer-service: Consumer";
 	}
 
 }
