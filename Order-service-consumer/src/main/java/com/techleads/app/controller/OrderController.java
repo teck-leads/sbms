@@ -8,14 +8,16 @@ import org.springframework.web.bind.annotation.RestController;
 public class OrderController {
 	
 	@Autowired
-	private PaymentRestConsumer paymentRestConsumer;
+	private PaymentRestConsumerI paymentRestConsumer;
+	//private PaymentRestConsumer paymentRestConsumer;
 	
 	@GetMapping("/order")
 	public String paymentDetails() {
 		//String paymentService = restTemplate.getForObject("http://PAYMENT-SERVICE-PRODUCER/payment/", String.class,1);
 		
 		//return "From Order-consumer-service: Consumer ==> "+paymentService;
-		return "From Order "+paymentRestConsumer.doPayFromConsumer();
+		//return "From Order "+paymentRestConsumer.doPayFromConsumer();
+		return "From Order (Using Feign Client) "+paymentRestConsumer.paymentDetails();
 	}
 
 }

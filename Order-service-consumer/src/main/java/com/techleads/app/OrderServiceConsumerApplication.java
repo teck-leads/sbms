@@ -3,7 +3,9 @@ package com.techleads.app;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
-@EnableEurekaClient
+import org.springframework.cloud.openfeign.EnableFeignClients;
+@EnableFeignClients //entable generating proxy clases
+@EnableEurekaClient // register with Eureka
 @SpringBootApplication
 public class OrderServiceConsumerApplication {
 

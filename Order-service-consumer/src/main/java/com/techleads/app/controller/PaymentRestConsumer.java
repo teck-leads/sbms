@@ -7,7 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
-@Component
+/*@Component commented because we are using Feign client
 public class PaymentRestConsumer {
 	@Autowired
 	private RestTemplate restTemplate;
@@ -28,4 +28,4 @@ public class PaymentRestConsumer {
 		return "(From PaymentRestConsumer + with LoadBalancerClient) ==> "+body;
 	}
 
-}
+}*/
