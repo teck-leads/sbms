@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -14,6 +15,8 @@ import com.techleads.app.model.PaymentProd;
 
 @RestController
 public class OrderController {
+	@Value("${my.app.name}")
+	private String configProp;
 
 	@Autowired
 	private PaymentRestConsumerI paymentRestConsumer;
@@ -27,7 +30,7 @@ public class OrderController {
 
 		// return "From Order-consumer-service: Consumer ==> "+paymentService;
 		// return "From Order "+paymentRestConsumer.doPayFromConsumer();
-		return "From Order (Using Feign Client) " + paymentRestConsumer.paymentDetails();
+		return "externalConfig From Order (Using Feign Client) " + paymentRestConsumer.paymentDetails()+" => "+configProp;
 	}
 
 	@GetMapping("/ordpayobj")
