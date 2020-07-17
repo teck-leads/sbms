@@ -2,6 +2,7 @@ package com.techleads.app.controller;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Random;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import com.techleads.app.model.PaymentProd;
 
 @RestController
@@ -18,8 +20,16 @@ public class PaymentController {
 	private int port;
 	
 	@GetMapping("/payment")
+	@HystrixCommand(fallbackMethod = "paymentDetailsFallback")
 	public String paymentDetails() {
-		return "From Payment-Service-Producer: PORT-> "+port;
+		if(new Random().nextInt(10)<=10) {
+			throw new RuntimeException("paymentDetails is down");
+		}
+		return "From Payment-Service-Producer [Acutal response]: PORT-> "+port;
+	}
+	
+	public String paymentDetailsFallback() {
+		return "From Payment-Service-Producer [@HystrixCommand(fallbackMethod = \"paymentDetailsFallback\")]: PORT-> "+port;
 	}
 	
 	
