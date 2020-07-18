@@ -31,7 +31,6 @@
 <dependency>
     <groupId>de.codecentric</groupId>
     <artifactId>spring-boot-admin-server-ui</artifactId>
-    <version>2.2.3</version>
 </dependency>
 		
 
